@@ -12,22 +12,26 @@
             --bg: #FFF9FB; 
         }
         
+        /* STRICT SECURITY: No Selection */
+        * {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            -webkit-touch-callout: none !important;
+        }
+
         body { 
-            -webkit-user-select: none; user-select: none; 
             font-family: 'Poppins', sans-serif; 
             text-align: center; background-color: var(--bg); 
             margin: 0; padding: 0; overflow-x: hidden;
         }
 
-        /* Header - Stylish Text */
         .app-header { background: white; padding: 35px 10px; border-bottom: 2px solid #eee; }
         .app-title { 
             font-family: 'Playfair Display', serif; 
-            font-size: 48px; 
-            font-weight: 800; 
-            color: var(--pink-dark); 
-            margin: 0;
-            letter-spacing: -1px;
+            font-size: 48px; font-weight: 800; 
+            color: var(--pink-dark); margin: 0;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         .app-sub { font-size: 18px; color: #444; font-weight: 500; margin-top: 5px; }
@@ -43,29 +47,26 @@
 
         .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 20px 20px 20px; }
         
-        /* Stylish Slim Pink Buttons with White Outline */
         .p-btn { 
             background: linear-gradient(145deg, #ec407a, #d81b60); 
-            color: white; 
-            border: 2px solid white; 
-            padding: 12px 5px; 
-            border-radius: 8px; 
-            font-weight: 600; 
-            font-size: 16px; 
-            cursor: pointer;
+            color: white; border: 2px solid white; 
+            padding: 12px 5px; border-radius: 8px; 
+            font-weight: 600; font-size: 16px; 
             box-shadow: 3px 3px 10px rgba(0,0,0,0.15);
-            transition: 0.3s;
             outline: 1.5px solid var(--pink-dark);
         }
-        .p-btn:active { transform: scale(0.96); opacity: 0.9; }
 
-        .ad-container { margin: 10px auto 25px auto; max-width: 320px; min-height: 50px; }
-
-        /* Fullscreen Viewer Logic */
         #novelViewer {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: white; z-index: 10000; display: none;
         }
+        
+        /* Overlay to block long-press on iframe */
+        .guard-layer {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10001; background: transparent;
+        }
+
         iframe { width: 100%; height: 100%; border: none; }
         
         .loader { 
@@ -77,7 +78,7 @@
     </style>
 </head>
 
-<body>
+<body oncontextmenu="return false;">
 
     <div id="mainPage">
         <div class="app-header">
@@ -94,23 +95,10 @@
             <button class="p-btn" onclick="openNovel('1ahN2gRB3RqPLQdslo_Kh3xi6uCh3TDGU')">Part 1</button>
             <button class="p-btn" onclick="openNovel('1OrYlxuOhL7eXyQoEp3Nv24mPTFZANaDZ')">Part 2</button>
         </div>
-
-        <div class="ad-container">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-8741169014792010" crossorigin="anonymous"></script>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-app-pub-8741169014792010"
-                 data-ad-slot="5549819770"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
     </div>
 
     <div id="novelViewer">
-        <div class="loader" id="loadSpin"></div>
+        <div class="guard-layer"></div> <div class="loader" id="loadSpin"></div>
         <iframe id="novelFrame" src="" onload="hideSpin()"></iframe>
     </div>
 
@@ -120,27 +108,22 @@
             const frame = document.getElementById('novelFrame');
             viewer.style.display = 'block';
             document.getElementById('loadSpin').style.display = 'block';
-            frame.src = `https://drive.google.com/file/d/${id}/preview`;
+            frame.src = `https://docs.google.com/viewer?url=https://drive.google.com/uc?id=${id}&embedded=true`;
             window.history.pushState({viewingNovel: true}, "");
         }
 
         window.onpopstate = function(event) {
-            const viewer = document.getElementById('novelViewer');
-            if (viewer.style.display === 'block') {
-                viewer.style.display = 'none';
-                document.getElementById('novelFrame').src = "";
-            }
+            document.getElementById('novelViewer').style.display = 'none';
+            document.getElementById('novelFrame').src = "";
         };
 
-        function hideSpin() { 
-            document.getElementById('loadSpin').style.display = 'none'; 
-        }
+        function hideSpin() { document.getElementById('loadSpin').style.display = 'none'; }
 
-        /* Security Features */
-        document.addEventListener('contextmenu', event => event.preventDefault());
-        document.addEventListener('keydown', e => { 
-            if (e.ctrlKey && ['c','u','s','p'].includes(e.key)) e.preventDefault(); 
-        });
+        // Extra JS Security
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        document.onkeydown = function(e) {
+            if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 85 || e.keyCode === 83)) return false;
+        };
     </script>
 </body>
 </html>
