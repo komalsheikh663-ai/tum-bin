@@ -4,126 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tum Bin - Urdu Novel</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        :root { 
-            --pink-dark: #C2185B; 
-            --pink-light: #F06292; 
-            --bg: #FFF9FB; 
-        }
+        :root { --main: #FFD700; --bg: #fffdf0; }
         
-        /* STRICT SECURITY: No Selection */
-        * {
-            -webkit-user-select: none !important;
-            -moz-user-select: none !important;
-            -ms-user-select: none !important;
-            user-select: none !important;
-            -webkit-touch-callout: none !important;
-        }
-
         body { 
-            font-family: 'Poppins', sans-serif; 
+            -webkit-user-select: none; user-select: none; 
+            font-family: 'Segoe UI', Roboto, sans-serif; 
             text-align: center; background-color: var(--bg); 
             margin: 0; padding: 0; overflow-x: hidden;
         }
 
-        .app-header { background: white; padding: 35px 10px; border-bottom: 2px solid #eee; }
+        .app-header {
+            background: white; padding: 15px 10px;
+            border-bottom: 3px solid var(--main);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
         .app-title { 
-            font-family: 'Playfair Display', serif; 
-            font-size: 48px; font-weight: 800; 
-            color: var(--pink-dark); margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-size: 30px; font-weight: 900; 
+            color: #b8860B; margin: 0; 
+            font-family: 'Georgia', serif;
         }
-        .app-sub { font-size: 18px; color: #444; font-weight: 500; margin-top: 5px; }
+        .app-sub { font-size: 13px; color: #444; font-style: italic; margin-top: -2px; }
 
+        /* Updated Box with Both Left and Right Yellow Borders */
         .info-card { 
-            background: white; margin: 25px 15px; padding: 20px; border-radius: 8px;
-            border: 1px solid #f1f1f1;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+            background: white; margin: 20px 15px 10px 15px; padding: 15px;
+            border-radius: 12px; font-size: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08); 
+            /* Dono taraf barabar line ke liye border-left aur border-right add kiya hai */
+            border-left: 6px solid var(--main);
+            border-right: 6px solid var(--main);
+            display: flex; flex-direction: column; gap: 5px;
+            line-height: 1.4;
+        }
+        .author-line { color: #333; font-weight: bold; font-size: 17px; }
+        .tagline-line { color: #555; font-size: 15px; }
+
+        .mini-btns { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+        .m-btn { 
+            background: white; color: #b8860B; border: 1.5px solid var(--main);
+            padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: bold;
+            cursor: pointer;
         }
 
-        .novel-by-text { font-weight: 600; color: #222; font-size: 20px; }
-        .tagline-text { font-size: 16px; color: #666; margin-top: 8px; }
-
-        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 20px 20px 20px; }
-        
+        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 15px; margin-bottom: 20px; }
         .p-btn { 
-            background: linear-gradient(145deg, #ec407a, #d81b60); 
-            color: white; border: 2px solid white; 
-            padding: 12px 5px; border-radius: 8px; 
-            font-weight: 600; font-size: 16px; 
-            box-shadow: 3px 3px 10px rgba(0,0,0,0.15);
-            outline: 1.5px solid var(--pink-dark);
+            background: var(--main); color: #000; border: none;
+            padding: 14px; border-radius: 8px; font-weight: bold;
+            font-size: 14px; cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        #novelViewer {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: white; z-index: 10000; display: none;
-        }
-        
-        /* Overlay to block long-press on iframe */
-        .guard-layer {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 10001; background: transparent;
-        }
-
+        .novel-container { position: relative; width: 100%; height: 85vh; display: none; border-top: 2px solid var(--main); background: #f0f0f0; margin-top: 5px; }
+        .security-overlay { position: absolute; top: 0; right: 0; width: 70px; height: 60px; background: transparent; z-index: 9999; }
         iframe { width: 100%; height: 100%; border: none; }
-        
-        .loader { 
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-            border: 4px solid #f3f3f3; border-top: 4px solid var(--pink-dark); 
-            border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; 
-        }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 4px solid #ddd; border-top: 4px solid var(--main); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: translate(-50%, -50%) rotate(0deg); } 100% { transform: translate(-50%, -50%) rotate(360deg); } }
     </style>
 </head>
 
-<body oncontextmenu="return false;">
+<body oncontextmenu="return false">
 
-    <div id="mainPage">
-        <div class="app-header">
-            <h1 class="app-title">Tum Bin</h1>
-            <div class="app-sub">By Husny Kanwal</div>
-        </div>
-
-        <div class="info-card">
-            <div class="novel-by-text">Novel's by Husny Kanwal...</div>
-            <div class="tagline-text">Novels : jo dil m uter jayn❤️...</div>
-        </div>
-
-        <div class="grid-container">
-            <button class="p-btn" onclick="openNovel('1ahN2gRB3RqPLQdslo_Kh3xi6uCh3TDGU')">Part 1</button>
-            <button class="p-btn" onclick="openNovel('1OrYlxuOhL7eXyQoEp3Nv24mPTFZANaDZ')">Part 2</button>
-        </div>
+    <div class="app-header">
+        <h1 class="app-title">Tum Bin</h1>
+        <div class="app-sub">By Husny Kanwal</div>
     </div>
 
-    <div id="novelViewer">
-        <div class="guard-layer"></div> <div class="loader" id="loadSpin"></div>
-        <iframe id="novelFrame" src="" onload="hideSpin()"></iframe>
+    <div class="info-card">
+        <div class="author-line">Novel's by <b>Husny Kanwal...</b></div>
+        <div class="tagline-line">Novels : jo dil m uter jayn❤️...</div>
+    </div>
+
+    <div class="mini-btns">
+        <button class="m-btn" onclick="shareMe()">📤 Share App</button>
+        <button class="m-btn" onclick="rateMe()">⭐ Rate Us</button>
+    </div>
+
+    <div class="grid-container">
+        <button class="p-btn" onclick="openNovel('1ahN2gRB3RqPLQdslo_Kh3xi6uCh3TDGU')">Part 1</button>
+        <button class="p-btn" onclick="openNovel('1OrYlxuOhL7eXyQoEp3Nv24mPTFZANaDZ')">Part 2</button>
+    </div>
+
+    <div class="ad-box" id="bannerAd" style="display:none; margin:10px auto; max-width:320px;">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-8741169014792010" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-app-pub-8741169014792010" data-ad-slot="5549819770" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <div class="novel-container" id="viewArea">
+        <div class="security-overlay"></div> 
+        <div class="loader" id="loadingIcon"></div>
+        <iframe id="novelFrame" onload="stopLoad()"></iframe>
     </div>
 
     <script>
         function openNovel(id) {
-            const viewer = document.getElementById('novelViewer');
+            const area = document.getElementById('viewArea');
             const frame = document.getElementById('novelFrame');
-            viewer.style.display = 'block';
-            document.getElementById('loadSpin').style.display = 'block';
-            frame.src = `https://docs.google.com/viewer?url=https://drive.google.com/uc?id=${id}&embedded=true`;
-            window.history.pushState({viewingNovel: true}, "");
+            const loader = document.getElementById('loadingIcon');
+            const ad = document.getElementById('bannerAd');
+            ad.style.display = 'block';
+            area.style.display = 'block';
+            loader.style.display = 'block';
+            frame.src = `https://drive.google.com/file/d/${id}/preview`;
+            setTimeout(() => { ad.scrollIntoView({ behavior: 'smooth' }); }, 300);
         }
-
-        window.onpopstate = function(event) {
-            document.getElementById('novelViewer').style.display = 'none';
-            document.getElementById('novelFrame').src = "";
-        };
-
-        function hideSpin() { document.getElementById('loadSpin').style.display = 'none'; }
-
-        // Extra JS Security
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        document.onkeydown = function(e) {
-            if (e.ctrlKey && (e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 85 || e.keyCode === 83)) return false;
-        };
+        function stopLoad() { document.getElementById('loadingIcon').style.display = 'none'; }
+        function shareMe() {
+            const shareData = {
+                title: 'Tum Bin Novel',
+                text: 'Tum Bin Urdu Novel by Husny Kanwal parhein!',
+                url: 'https://play.google.com/store/apps/details?id=com.akseyyaar.novel'
+            };
+            if (navigator.share) { navigator.share(shareData).catch(err => console.log('Error sharing', err)); }
+            else { alert('App link copied to clipboard!'); }
+        }
+        function rateMe() { window.open('https://play.google.com/store/apps/details?id=com.akseyyaar.novel', '_blank'); }
+        document.addEventListener('keydown', e => { if (e.ctrlKey && ['c','u','s','p'].includes(e.key)) e.preventDefault(); });
     </script>
 </body>
 </html>
