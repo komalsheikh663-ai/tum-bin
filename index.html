@@ -2,54 +2,70 @@
 <html lang="ur">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tum Bin - Urdu Novel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tum Bin - Smart Protected</title>
+    
+    <link rel="preconnect" href="https://drive.google.com">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-8741169014792010" crossorigin="anonymous"></script>
+    
+    <script>
+        // 3. App Open Call (ID: 7976806018) & 4. Smart Error Handling
+        window.onload = function() {
+            try { 
+                (adsbygoogle = window.adsbygoogle || []).push({
+                    google_ad_client: "ca-app-pub-8741169014792010",
+                    enable_page_level_ads: true
+                }); 
+            } catch (e) {}
+            
+            // Smart Delay for Ad-Blocker Alert
+            setTimeout(() => {
+                const adSlot = document.querySelector('.adsbygoogle');
+                const isBlocked = !adSlot || adSlot.innerHTML.replace(/\s/g, "").length === 0;
+                if (isBlocked && window.location.protocol !== 'file:') {
+                    document.getElementById('security-alert-screen').style.display = 'block';
+                }
+            }, 12000); 
+        };
+    </script>
+
     <style>
+        /* 5. CSS Optimization & Original Golden Theme */
         :root { --main: #FFD700; --bg: #fffdf0; }
-        
+        * { -webkit-user-select: none !important; user-select: none !important; -webkit-touch-callout: none !important; }
+
         body { 
-            -webkit-user-select: none; user-select: none; 
-            font-family: 'Segoe UI', Roboto, sans-serif; 
+            font-family: 'Segoe UI', sans-serif; 
             text-align: center; background-color: var(--bg); 
             margin: 0; padding: 0; overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        .app-header {
-            background: white; padding: 15px 10px;
-            border-bottom: 3px solid var(--main);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        /* 6. Deep Ad Masking Classes */
+        .novel-asset-unit { margin: 10px 0; min-height: 1px; background: transparent; }
+        .content-buffer-area { margin: 15px 0; min-height: 1px; }
+
+        #security-alert-screen {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(184, 134, 11, 0.98); color: white;
+            z-index: 10000; text-align: center; padding-top: 25%; padding-inline: 20px;
         }
-        .app-title { 
-            font-size: 30px; font-weight: 900; 
-            color: #b8860B; margin: 0; 
-            font-family: 'Georgia', serif;
-        }
-        .app-sub { font-size: 13px; color: #444; font-style: italic; margin-top: -2px; }
+
+        .app-header { background: white; padding: 15px 10px; border-bottom: 3px solid var(--main); box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .app-title { font-size: 32px; font-weight: 900; color: #b8860B; margin: 0; font-family: 'Georgia', serif; }
 
         .info-card { 
-            background: white; margin: 20px 15px 10px 15px; padding: 15px;
-            border-radius: 12px; font-size: 16px;
+            background: white; margin: 15px; padding: 15px; border-radius: 12px; 
+            border-left: 6px solid var(--main); border-right: 6px solid var(--main); 
             box-shadow: 0 2px 8px rgba(0,0,0,0.08); 
-            border-left: 6px solid var(--main);
-            border-right: 6px solid var(--main);
-            display: flex; flex-direction: column; gap: 5px;
-            line-height: 1.4;
-        }
-        .author-line { color: #333; font-weight: bold; font-size: 17px; }
-        .tagline-line { color: #555; font-size: 15px; }
-
-        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 15px; margin-bottom: 20px; }
-        .p-btn { 
-            background: var(--main); color: #000; border: none;
-            padding: 14px; border-radius: 8px; font-weight: bold;
-            font-size: 14px; cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .novel-container { position: relative; width: 100%; height: 85vh; display: none; border-top: 2px solid var(--main); background: #f0f0f0; margin-top: 5px; }
-        
-        /* Security Overlay - First Priority */
-        .security-overlay { position: absolute; top: 0; right: 0; width: 70px; height: 60px; background: transparent; z-index: 9999; }
+        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 15px; margin-top: 20px; }
+        .p-btn { background: var(--main); color: #000; border: none; padding: 14px; border-radius: 8px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+
+        /* 7. Protection: Security Shield */
+        .reader-display-frame { position: relative; width: 100%; height: 85vh; display: none; border-top: 2px solid var(--main); background: #f0f0f0; }
+        .top-shield-layer { position: absolute; top: 0; right: 0; width: 100%; height: 65px; background: transparent; z-index: 9999; }
         
         iframe { width: 100%; height: 100%; border: none; }
         .loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); border: 4px solid #ddd; border-top: 4px solid var(--main); border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; }
@@ -59,47 +75,61 @@
 
 <body oncontextmenu="return false">
 
+    <div id="security-alert-screen">
+        <h2>سیکیورٹی الرٹ! ⚠️</h2>
+        <p>ناول لوڈ ہونے میں دیر ہو رہی ہے۔ براہ کرم انٹرنیٹ چیک کریں یا ایڈ بلاکر بند کر کے ریفریش کریں۔</p>
+        <button onclick="location.reload()" style="background:white; color:#b8860B; padding:10px 20px; border:none; border-radius:5px; font-weight:bold;">دوبارہ کوشش کریں</button>
+    </div>
+
     <div class="app-header">
         <h1 class="app-title">Tum Bin</h1>
-        <div class="app-sub">By Husny Kanwal</div>
+        <div style="font-style: italic; color: #444; font-size: 14px;">By Husny Kanwal</div>
+    </div>
+
+    <div class="novel-asset-unit">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-app-pub-8741169014792010" data-ad-slot="4716217857" data-ad-format="banner"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
     <div class="info-card">
-        <div class="author-line">Novel's by <b>Husny Kanwal...</b></div>
-        <div class="tagline-line">Novels : jo dil m uter jayn❤️...</div>
+        <div style="color: #333; font-weight: bold; font-size: 17px;">Novel's by <b>Husny Kanwal...</b></div>
+        <div style="color: #555; font-size: 15px;">Novels : jo dil m uter jayn❤️...</div>
     </div>
 
     <div class="grid-container">
-        <button class="p-btn" onclick="openNovel('1ahN2gRB3RqPLQdslo_Kh3xi6uCh3TDGU')">Part 1</button>
-        <button class="p-btn" onclick="openNovel('1OrYlxuOhL7eXyQoEp3Nv24mPTFZANaDZ')">Part 2</button>
+        <button class="p-btn" onclick="secureOpen('1ahN2gRB3RqPLQdslo_Kh3xi6uCh3TDGU')">Part 1</button>
+        <button class="p-btn" onclick="secureOpen('1OrYlxuOhL7eXyQoEp3Nv24mPTFZANaDZ')">Part 2</button>
+        
+        <div style="grid-column: span 2;" class="content-buffer-area">
+            <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-fb+5w+4e-db+86" data-ad-client="ca-app-pub-8741169014792010" data-ad-slot="6705054543"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
     </div>
 
-    <div class="novel-container" id="viewArea">
-        <div class="security-overlay"></div> 
+    <div class="reader-display-frame" id="viewArea">
+        <div class="top-shield-layer"></div>
         <div class="loader" id="loadingIcon"></div>
-        <iframe id="novelFrame" onload="stopLoad()"></iframe>
+        <iframe id="novelFrame" onload="document.getElementById('loadingIcon').style.display='none'"></iframe>
     </div>
 
     <script>
-        function openNovel(id) {
+        // 10. Interstitial Trigger (ID: 3619726203) & Manual Push
+        function secureOpen(id) {
+            try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
+
             const area = document.getElementById('viewArea');
             const frame = document.getElementById('novelFrame');
-            const loader = document.getElementById('loadingIcon');
             
             area.style.display = 'block';
-            loader.style.display = 'block';
+            document.getElementById('loadingIcon').style.display = 'block';
             frame.src = `https://drive.google.com/file/d/${id}/preview`;
             
             setTimeout(() => { area.scrollIntoView({ behavior: 'smooth' }); }, 300);
         }
 
-        function stopLoad() {
-            document.getElementById('loadingIcon').style.display = 'none';
-        }
-
-        // Security: No Copy, No Shortcuts
-        document.addEventListener('keydown', e => {
-            if (e.ctrlKey && ['c','u','s','p'].includes(e.key)) e.preventDefault();
+        // Final Security Guards
+        document.addEventListener('keydown', e => { 
+            if (e.ctrlKey && ['c','u','s','p','a'].includes(e.key)) e.preventDefault(); 
         });
     </script>
 </body>
